@@ -1,0 +1,17 @@
+[Unit]
+Description=GSS-Worker
+After=rabbitmq.service
+Requires=rabbitmq.service
+
+[Service]
+Restart=always
+
+[Service]
+TimeoutStartSec=0
+User=gs3
+Group=gs3
+Restart=always
+ExecStart=/usr/bin/node /home/gs3/gss-worker run
+
+[Install]
+WantedBy=multi-user.target
