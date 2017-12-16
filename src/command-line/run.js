@@ -7,15 +7,8 @@ module.exports = () => {
     log.debug('AMQP Events', 'Register events');
 
     amqp.connect(() => {
-        /* amqp.on('*', (eventName, data) => {
-            console.log(eventName + ": " + JSON.stringify(data, null, 4));
-            php.run('--help');
+        amqp.on('*', (eventName, data) => {
+            php.run(['gs:task:runner', JSON.stringify(data)]);
         });
-
-        setTimeout(function() {
-            amqp.emit({
-                'name': 'GSReinstall'
-            });
-        }, 2000); */
     });
 };

@@ -12,7 +12,6 @@ module.exports = {
 
         let process = spawn('/usr/bin/php7.1', args, {
             cwd: '/home/gs3/current',
-            // uid: 1001,
             detached: true
         });
 
