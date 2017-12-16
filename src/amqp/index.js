@@ -6,7 +6,7 @@ let AMQPClass = {
     connection: null,
     exchange: null,
     cb: () => {},
-    queueName: 'server_queue2',
+    queueName: 'server_queue',
     events: {
         'GSUpdate': [], 'GSReinstall': [], 'GSDelete': [], '*': []
     },
