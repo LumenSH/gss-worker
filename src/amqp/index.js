@@ -34,15 +34,15 @@ let AMQPClass = {
         }
 
         log.debug('AMQP', 'Creating exchange');
-        AMQPClass.connection.exchange('server_queue2', {
+        AMQPClass.connection.exchange('server_queue', {
             type: 'direct',
-            durable: true,
+            durable: false,
             confirm: true,
             autoDelete: false
         }, (exchange) => {
             AMQPClass.exchange = exchange;
-            AMQPClass.registerQueue();
         });
+	AMQPClass.registerQueue();
     },
     
     emit: (msg, cb) => {
@@ -55,7 +55,10 @@ let AMQPClass = {
 
     registerQueue: () => {
         log.debug('AMQP', 'Register queue');
-        AMQPClass.connection.queue(AMQPClass.queueName, (queue) => {
+        AMQPClass.connection.queue(AMQPClass.queueName, {
+            durable: true,
+            autoDelete: false
+	}, (queue) => {
             AMQPClass.queue = queue;
             queue.bind(AMQPClass.queueName, '');
             AMQPClass.registerSubscriber();

@@ -19,15 +19,15 @@ module.exports = {
         process.stdout.setEncoding('utf-8');
 
         process.on('error', (err) => {
-            log.error('PHP', err.toString());
+            log.error('PHP (Start)', err);
         });
 
         process.stdout.on('data', (data) => {
-            log.log('PHP', data);
+            log.log('PHP (Run)', data);
         });
 
         process.stderr.on('data', (data) => {
-            log.error('PHP', data);
+            log.error('PHP (Run)', data);
         });
     }
 };
