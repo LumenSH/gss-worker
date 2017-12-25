@@ -8,7 +8,7 @@ module.exports = () => {
 
     amqp.connect(() => {
         amqp.on('*', (eventName, data) => {
-            php.run(['gs:task:runner', JSON.stringify(data)]);
+            php.queue.add(['gs:task:runner', JSON.stringify(data)]);
         });
     });
 };
