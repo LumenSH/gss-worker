@@ -1,10 +1,5 @@
 const spawn = require('child_process').spawn;
 
-let queue =  {
-    running: false,
-    tasks: []
-};
-
 let php = {
     queue: {
         running: false,
@@ -15,6 +10,7 @@ let php = {
         },
         execute: () => {
             if (php.queue.running !== true && php.queue.tasks.length > 0) {
+                php.queue.running = true;
                 let task = php.queue.tasks.shift();
                 php.run(task);
             }
