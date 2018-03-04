@@ -8,7 +8,10 @@ let AMQPClass = {
     cb: () => {},
     queueName: 'server_queue',
     events: {
-        'GSUpdate': [], 'GSReinstall': [], 'GSDelete': [], '*': []
+        'GSUpdate': [],
+        'GSReinstall': [],
+        'GSDelete': [],
+        '*': []
     },
 
     connect: (cb) => {
@@ -23,8 +26,8 @@ let AMQPClass = {
             this.cb = cb;
             AMQPClass.registerExchange();
         });
-        AMQPClass.connection.on('error', function(e) {
-            log.error('AMQP', `Error from amqp: ${e}`);
+        AMQPClass.connection.on('error', function(error) {
+            log.error('AMQP', `Error from amqp: ${error}`);
         });
     },
 

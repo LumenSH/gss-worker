@@ -1,13 +1,12 @@
 'use strict';
 
-// noinspection JSUnusedLocalSymbols
-const colors = require('colors');
-const callerId = require('caller-id');
-const defaultUnknownText = 'undefined';
+const   colors = require('colors'),
+        callerId = require('caller-id'),
+        defaultUnknownText = 'undefined';
 
 console.debug = console.log;
 
-let logging = {
+let logging = { 
     consoleEvents: [
         {
             name: 'info',
@@ -30,16 +29,19 @@ let logging = {
             color: 'grey'
         }
     ],
+
     getLogDate: () => {
+        
         return new Date().toLocaleString();
     },
-    getTrace: (e) => {
+    getTrace: () => {
         let caller = callerId.getString(logging[e]);
         if (!caller || caller === 'getData') {
             caller = '(anonymous function)';
         }
         return caller;
     },
+
     initialize: () => {
         logging.consoleEvents.forEach((consoleEvent) => {
             logging[consoleEvent.name] = (name, data) => {
@@ -53,7 +55,7 @@ let logging = {
                     data = name;
                     calledCategory = defaultUnknownText;
                 } else {
-                    calledCategory = name || defaultUnknownText
+                    calledCategory = name || defaultUnknownText;
                 }
                 console[`${consoleEvent.name}`](`[${logging.getLogDate()}] [${calledCategory}/${calledByFunction}] ${consoleEvent.name.toUpperCase()[consoleEvent.color]}   ${data.white}`);
             }

@@ -1,3 +1,5 @@
+'use strict';
+
 const spawn = require('child_process').spawn;
 
 let php = {
@@ -25,7 +27,7 @@ let php = {
 
         log.debug('PHP', `Run command "${args[1] || 'undefined'}" with args "${JSON.stringify(args)}"`);
 
-        let process = spawn('/usr/bin/php7.1', args, {
+        let process = spawn('/usr/bin/php7.2', args, {
             cwd: '/home/gs3/current',
         });
 
