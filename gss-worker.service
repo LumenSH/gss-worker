@@ -1,7 +1,6 @@
 [Unit]
 Description=GSS-Worker
 After=rabbitmq.service
-Requires=rabbitmq.service
 
 [Service]
 Restart=always
