@@ -34,8 +34,8 @@ let logging = {
         
         return new Date().toLocaleString();
     },
-    getTrace: () => {
-        let caller = callerId.getString(logging[e]);
+    getTrace: (eventName) => {
+        let caller = callerId.getString(logging[eventName]);
         if (!caller || caller === 'getData') {
             caller = '(anonymous function)';
         }
